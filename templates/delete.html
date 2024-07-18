@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>投稿を削除する</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>投稿を削除する</h1>
+    <p>{{ book.title }} - {{ book.author }} - ¥{{ book.price }}</p>
+    <form method="POST" action="{{ url_for('delete', book_id=book.id) }}">
+        <label for="password">パスワード</label>
+        <input type="password" id="password" name="password" required><br>
+        <button type="submit">削除</button>
+    </form>
+    <a href="{{ url_for('index') }}">戻る</a>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>不要教科書投稿システム</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>不要教科書投稿システム</h1>
+    <a href="{{ url_for('post') }}">教科書を投稿する</a>
+    <ul>
+        {% for book in books %}
+        <li>
+            タイトル: {{ book.title }}<br>
+            著者: {{ book.author }}<br>
+            ISBN: {{ book.isbn }}<br>
+            状態: {{ book.condition }}<br>
+            価格: ¥{{ book.price }}<br>
+            連絡先: {{ book.contact_email }}<br>
+            <a href="{{ url_for('delete', book_id=book.id) }}">削除</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>
